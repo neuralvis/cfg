@@ -243,6 +243,12 @@ if [ $(uname) == "Darwin" ]; then
     # export EDITOR="emacsclient --alternate-editor=\"\" -t"
     # export VISUAL="emacsclient --alternate-editor=\"\" -t"
 
+
+    # !! IMPORTANT !! this must go *before* the conda init block
+    #
+    # Do not automatically activate the base environment
+    # during shell initialization.
+    export CONDA_AUTO_ACTIVATE_BASE=false
     
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -485,7 +491,3 @@ if [ $(uname) == "Linux" ]; then
 fi
 # }}}
 
-# Setting PATH for Python 3.12
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:${PATH}"
-export PATH
