@@ -1,9 +1,9 @@
 [submodule ".emacs.d"]
 	path = .emacs.d
-	url = git@github.com:vyslexic/prelude.git
+	url = git@github.com:secunit64/prelude.git
 [submodule ".ssh"]
 	path = .ssh
-	url = git@github.com:vyslexic/ssh-config.git
+	url = git@github.com:neuralvis/ssh-config.git
 [submodule "warp-themes"]
 	path = warp-themes
-	url = git@github.com:neuralvis/themes.git
+	url = git@github.com:secunit64/themes.git
