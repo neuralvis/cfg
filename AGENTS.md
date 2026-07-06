@@ -29,7 +29,7 @@ Three submodules — initialize with `git submodule update --init --recursive`:
 - **Shell**: `.bashrc`, `.zshrc`, `.bash_profile`, `.inputrc` (multi-shell, with OS detection for Linux vs macOS)
 - **Editor**: `.emacs.d/` (submodule)
 - **Git**: `.gitconfig` — extensive alias set (`st`, `ci`, `co`, `br`, formatted logs `ll`/`ls`/`lds`, `assume`/`unassume`)
-- **Terminal multiplexer**: `.tmux.conf` (backtick prefix, vim-style navigation)
+- **Terminal multiplexer**: `.tmux.conf` (backtick prefix)
 - **Prompt**: `starship/starship.toml`
 - **macOS**: `.osx` system defaults
 - **Themes**: `warp-themes/` (submodule), plus `iterm2/` and `terminal/`
