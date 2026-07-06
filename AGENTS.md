@@ -47,7 +47,9 @@ Three submodules — initialize with `git submodule update --init --recursive`:
 
 ## Skills
 
-Reusable agent workflows live in `.agents/skills/<name>/SKILL.md`:
+Reusable agent workflows live in `.agents/skills/<name>/SKILL.md`. Claude Code
+reads the same files via `.claude/skills` (a symlink → `.agents/skills`), so both
+Warp/Oz and Claude Code share one set of skills:
 
 - `install-dotfile` — symlink a new config into place and add the matching line to `setup.sh`
 - `sync-dotfiles` — stage, commit, and push configuration changes
