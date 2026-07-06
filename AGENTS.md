@@ -32,7 +32,7 @@ Three submodules — initialize with `git submodule update --init --recursive`:
 - **Terminal multiplexer**: `.tmux.conf` (backtick prefix)
 - **Prompt**: `starship/starship.toml`
 - **Themes**: `warp-themes/` (submodule), plus `iterm2/` and `terminal/`
-- **Utilities** (`bin/`): `ct` (Command-T-like fuzzy file finder), `colors.sh` (terminal color reference), `base.py` (Python CLI scaffold), `dwm` (Linux dwm startup)
+- **Utilities** (`bin/`): `ct` (Command-T-like fuzzy file finder), `colors.sh` (terminal color reference), `base.py` (Python CLI scaffold)
 
 ## Skills
 
