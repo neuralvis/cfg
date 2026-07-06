@@ -93,14 +93,9 @@ if [ $(uname) = "Darwin" ]; then
   export TNS_ADMIN="/Users/nick/dev/apps/sqlplus-ic-10.2"
 #  export PATH=/Users/nick/dev/apps/sqlplus-ic-10.2:$PATH
 
-  #project aliases
-  alias tarot="screen -c ./screen-tarot.config"
-  alias atg="screen -c ./screen-atg.config"
-
   #sourcing
 
   #source /Users/nick/dev/envs/boi-env/bin/activate
-  #source /Users/nick/.philips
   #source git bash completion from homebrew on OSX
   #source /usr/local/etc/bash_completion.d/git-completion.bash
 
