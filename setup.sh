@@ -2,6 +2,8 @@
 
 ln -sf ~/develop/cfg/.bashrc ~/.bashrc
 ln -sf ~/develop/cfg/.bash_profile ~/.bash_profile
+ln -sf ~/develop/cfg/.bash_env ~/.bash_env
+ln -sfn ~/develop/cfg/.bashrc.d ~/.bashrc.d
 ln -sf ~/develop/cfg/.emacs.d ~/.emacs.d
 ln -sf ~/develop/cfg/.ssh/config ~/.ssh/config
 ln -sf ~/develop/cfg/.gitconfig ~/.gitconfig

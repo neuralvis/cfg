@@ -1,0 +1,95 @@
+# ~/.bash_env
+# Fast, environment-only configuration sourced by EVERY bash shell (interactive
+# and non-interactive) via ~/.bash_profile, ~/.bashrc, and $BASH_ENV.
+#
+# Keep this cheap and side-effect free: only exports, PATH edits, and lazy
+# shims. No prompt, no completion, no eager sourcing of conda/nvm, no
+# subprocesses. This is what keeps agents' non-interactive shells fast.
+
+# Load once per shell process. NOT exported, so freshly-spawned child shells
+# re-run this file and get the lazy shims too.
+[[ -n "$__BASH_ENV_LOADED" ]] && return
+__BASH_ENV_LOADED=1
+
+# Let non-login, non-interactive `bash -c` shells load this file as well.
+export BASH_ENV="$HOME/.bash_env"
+
+# Locale
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Editor (emacsclient)
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -nw -t"
+export VISUAL="emacsclient -nw -t"
+
+# conda: never auto-activate the base environment
+export CONDA_AUTO_ACTIVATE_BASE=false
+
+# nvm dir (nvm.sh is lazy-loaded via the shim below)
+export NVM_DIR="$HOME/.nvm"
+
+# ---------------------------------------------------------------- macOS ----
+if [ "$(uname)" = "Darwin" ]; then
+  # Homebrew env, hardcoded (equivalent to `brew shellenv`) to avoid spawning a
+  # subprocess on every shell. Guarded so it runs only once per env.
+  if [ -d /opt/homebrew/bin ] && [ -z "$HOMEBREW_PREFIX" ]; then
+    export HOMEBREW_PREFIX="/opt/homebrew"
+    export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+    export HOMEBREW_REPOSITORY="/opt/homebrew"
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+    export MANPATH="/opt/homebrew/share/man${MANPATH:+:$MANPATH}"
+    export INFOPATH="/opt/homebrew/share/info${INFOPATH:+:$INFOPATH}"
+  fi
+
+  export PATH="$HOME/bin:$PATH"
+  [ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+  [ -d "$HOME/.roswell/bin" ] && export PATH="$PATH:$HOME/.roswell/bin"
+
+  # Put the default nvm-installed node on PATH so node/npm/npx work with zero
+  # init. nvm itself is only needed for `nvm use`/`install` (see shim below).
+  _node_bins=( "$NVM_DIR"/versions/node/*/bin )
+  _def_node="${_node_bins[${#_node_bins[@]}-1]}"
+  [ -d "$_def_node" ] && export PATH="$_def_node:$PATH"
+  unset _node_bins _def_node
+
+  # TLS cert bundle: export only if it already exists (never generate here).
+  if [ -f "$HOME/.certs/all.pem" ]; then
+    export GIT_SSL_CAINFO="$HOME/.certs/all.pem"
+    export AWS_CA_BUNDLE="$HOME/.certs/all.pem"
+    export NODE_EXTRA_CA_CERTS="$HOME/.certs/all.pem"
+    export REQUESTS_CA_BUNDLE="$HOME/.certs/all.pem"
+  fi
+fi
+
+# ---------------------------------------------------------------- Linux ----
+if [ "$(uname)" = "Linux" ]; then
+  [ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
+  [ -d "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin" ] && \
+    export PATH="$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
+  [ -d /snap/bin ] && export PATH="/snap/bin:$PATH"
+  _node_bins=( "$NVM_DIR"/versions/node/*/bin )
+  _def_node="${_node_bins[${#_node_bins[@]}-1]}"
+  [ -d "$_def_node" ] && export PATH="$_def_node:$PATH"
+  unset _node_bins _def_node
+fi
+
+# --------------------------------------------------- lazy tool shims -------
+# Available in ALL shells (including agents'): defining a function is instant;
+# the expensive init runs only the first time the tool is invoked.
+
+# nvm: node/npm/npx already resolve via PATH above; this enables `nvm use` etc.
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  nvm() { unset -f nvm; . "$NVM_DIR/nvm.sh"; nvm "$@"; }
+fi
+
+# conda: `conda` and `conda activate` load on first use. Plain python/pip come
+# from your normal PATH (Homebrew), matching current behavior.
+for _c in /opt/homebrew/anaconda3/bin/conda "$HOME/anaconda3/bin/conda" /opt/anaconda3/bin/conda; do
+  if [ -x "$_c" ]; then
+    __CONDA_EXE="$_c"
+    conda() { unset -f conda; eval "$("$__CONDA_EXE" shell.bash hook 2>/dev/null)"; conda "$@"; }
+    break
+  fi
+done
+unset _c
