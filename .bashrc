@@ -168,7 +168,6 @@ fi
 # OSX specific config {{{
 if [ $(uname) == "Darwin" ]; then
   export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
-  export MANPATH=/opt/local/share/man:$MANPATH
 
   #aliases
   alias ls='ls -G'
@@ -176,7 +175,6 @@ if [ $(uname) == "Darwin" ]; then
   alias la='ls -alG'
   alias less='less -R'
   alias fnd='open -a Finder'
-  alias gitx='open -a GitX'
   alias grp='grep -RIi'
   alias assumed="git ls-files -v | grep ^[a-z] | sed -e 's/^h\ //'"
 
