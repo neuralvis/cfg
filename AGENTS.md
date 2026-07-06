@@ -14,7 +14,18 @@ Run the setup script to create the symlinks and install the Starship prompt:
 ./setup.sh
 ```
 
-`setup.sh` is the source of truth for what gets linked. It currently links `.bashrc`, `.bash_profile`, `.emacs.d/`, `.ssh/config`, `.gitconfig`, `warp-themes/` → `~/.warp/themes`, `matplotlibrc`, `jupyter_notebook_config.py`, and `starship/starship.toml`. Other configs in the repo (e.g. `.zshrc`, `.tmux.conf`, `.inputrc`) can be linked manually when needed.
+`setup.sh` is the source of truth for what gets linked. It currently links:
+
+- `.bashrc`, `.bash_profile`, `.bash_env`, and `.bashrc.d/` → `~/`
+- `.emacs.d/` → `~/.emacs.d`
+- `.ssh/config` → `~/.ssh/config` (and `chmod 644`s it)
+- `.gitconfig` → `~/.gitconfig`
+- `warp-themes/` → `~/.warp/themes`
+- `matplotlibrc` → both `~/.matplotlib/matplotlibrc` and `~/.config/matplotlib/matplotlibrc`
+- `jupyter_notebook_config.py` → `~/.jupyter/jupyter_notebook_config.py`
+- `starship/starship.toml` → `~/.config/starship.toml`
+
+It also installs the Starship prompt into `~/.starship/bin` via the official install script. Other configs in the repo (e.g. `.zshrc`, `.tmux.conf`, `.inputrc`) are not linked by `setup.sh` and can be linked manually when needed.
 
 ## Git submodules
 
