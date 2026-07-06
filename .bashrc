@@ -167,7 +167,7 @@ fi
 # }}}
 # OSX specific config {{{
 if [ $(uname) == "Darwin" ]; then
-  export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/Cellar/python/2.7.3/bin:/usr/local/share/python:$HOME/bin:$PATH
+  export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
   export MANPATH=/opt/local/share/man:$MANPATH
 
   #aliases

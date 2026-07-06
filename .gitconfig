@@ -1,7 +1,6 @@
 # core {{{
 [core]
     editor = emacs
-	excludesfile = /Users/madsrini/.gitignore_global
     pager=less -x4
 
 #}}}
@@ -163,8 +162,6 @@
 	smudge = git-lfs smudge -- %f
 	required = true
 	process = git-lfs filter-process
-[commit]
-	template = /Users/madsrini/.stCommitMsg
 [credential]
 	helper = store
 [credential "https://github.com"]
