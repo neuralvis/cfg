@@ -14,7 +14,7 @@ Run the setup script to create the symlinks and install the Starship prompt:
 ./setup.sh
 ```
 
-`setup.sh` is the source of truth for what gets linked. It currently links `.bashrc`, `.bash_profile`, `.emacs.d/`, `.ssh/config`, `.gitconfig`, `warp-themes/` → `~/.warp/themes`, `matplotlibrc`, `jupyter_notebook_config.py`, and `starship/starship.toml`. Other configs in the repo (e.g. `.zshrc`, `.tmux.conf`, `.inputrc`, `.osx`) can be linked manually when needed.
+`setup.sh` is the source of truth for what gets linked. It currently links `.bashrc`, `.bash_profile`, `.emacs.d/`, `.ssh/config`, `.gitconfig`, `warp-themes/` → `~/.warp/themes`, `matplotlibrc`, `jupyter_notebook_config.py`, and `starship/starship.toml`. Other configs in the repo (e.g. `.zshrc`, `.tmux.conf`, `.inputrc`) can be linked manually when needed.
 
 ## Git submodules
 
@@ -31,7 +31,6 @@ Three submodules — initialize with `git submodule update --init --recursive`:
 - **Git**: `.gitconfig` — extensive alias set (`st`, `ci`, `co`, `br`, formatted logs `ll`/`ls`/`lds`, `assume`/`unassume`)
 - **Terminal multiplexer**: `.tmux.conf` (backtick prefix)
 - **Prompt**: `starship/starship.toml`
-- **macOS**: `.osx` system defaults
 - **Themes**: `warp-themes/` (submodule), plus `iterm2/` and `terminal/`
 - **Utilities** (`bin/`): `ct` (Command-T-like fuzzy file finder), `colors.sh` (terminal color reference), `base.py` (Python CLI scaffold), `dwm` (Linux dwm startup)
 
