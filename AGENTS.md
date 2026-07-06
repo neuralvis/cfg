@@ -14,7 +14,7 @@ Run the setup script to create the symlinks and install the Starship prompt:
 ./setup.sh
 ```
 
-`setup.sh` is the source of truth for what gets linked. It currently links `.bashrc`, `.bash_profile`, `.emacs.d/`, `.ssh/config`, `.gitconfig`, `warp-themes/` → `~/.warp/themes`, `matplotlibrc`, `jupyter_notebook_config.py`, and `starship/starship.toml`. Other configs in the repo (e.g. `.zshrc`, `.tmux.conf`, `.vimrc`, `.inputrc`, `.osx`) can be linked manually when needed.
+`setup.sh` is the source of truth for what gets linked. It currently links `.bashrc`, `.bash_profile`, `.emacs.d/`, `.ssh/config`, `.gitconfig`, `warp-themes/` → `~/.warp/themes`, `matplotlibrc`, `jupyter_notebook_config.py`, and `starship/starship.toml`. Other configs in the repo (e.g. `.zshrc`, `.tmux.conf`, `.inputrc`, `.osx`) can be linked manually when needed.
 
 ## Git submodules
 
@@ -27,7 +27,7 @@ Three submodules — initialize with `git submodule update --init --recursive`:
 ## Repository layout
 
 - **Shell**: `.bashrc`, `.zshrc`, `.bash_profile`, `.inputrc` (multi-shell, with OS detection for Linux vs macOS)
-- **Editor**: `.emacs.d/` (submodule), `.vimrc`, `.vim/`
+- **Editor**: `.emacs.d/` (submodule)
 - **Git**: `.gitconfig` — extensive alias set (`st`, `ci`, `co`, `br`, formatted logs `ll`/`ls`/`lds`, `assume`/`unassume`)
 - **Terminal multiplexer**: `.tmux.conf` (backtick prefix, vim-style navigation)
 - **Prompt**: `starship/starship.toml`

@@ -80,14 +80,6 @@ if [ $(uname) = "Darwin" ]; then
   alias grp='grep -RIi'
   alias assumed="git ls-files -v | grep ^[a-z] | sed -e 's/^h\ //'"
 
-  #open macvim
-  function gvim {
-    if [ -e $1 ];
-      then open -a MacVim $1;
-      else touch $1 && open -a MacVim $1; 
-    fi
-  }
-
   #setup sqlplus
   export DYLD_LIBRARY_PATH="/opt/local/lib/oracle:/Users/nick/dev/apps/sqlplus-ic-10.2"
   export TNS_ADMIN="/Users/nick/dev/apps/sqlplus-ic-10.2"

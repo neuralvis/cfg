@@ -64,7 +64,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm,               xK_p        ), spawn "exe=`dmenu_path | dmenu -nb black -nf white -sb white -sf black -fn lucidasanstypewriter-bold-24` && eval \"exec $exe\"")
     , ((modm,               xK_b        ), sendMessage ToggleStruts)
     , ((modm,               xK_g        ), goToSelected defaultGSConfig)
-    , ((modm,               xK_s        ), spawnSelected defaultGSConfig ["gnome-terminal","firefox","google-chrome","gvim"])
+    , ((modm,               xK_s        ), spawnSelected defaultGSConfig ["gnome-terminal","firefox","google-chrome"])
     , ((modm.|.controlMask, xK_x        ), runOrRaisePrompt defaultXPConfig) 
     , ((modm,               xK_backslash), withFocused (sendMessage . maximizeRestore))
     --, ((modm .|. shiftMask, xK_m        ), updateLayout (W.currentTag W.current) (Full (W.view, 0)))
