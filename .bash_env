@@ -74,6 +74,11 @@ if [ "$(uname)" = "Linux" ]; then
   unset _node_bins _def_node
 fi
 
+# ------------------------------------------------------------ common -------
+# User-local binaries (pip --user, pipx, etc.). Common to macOS and Linux;
+# prepended last so it takes precedence, matching the prior .bash_profile order.
+export PATH="$HOME/.local/bin:$PATH"
+
 # --------------------------------------------------- lazy tool shims -------
 # Available in ALL shells (including agents'): defining a function is instant;
 # the expensive init runs only the first time the tool is invoked.
